@@ -1,0 +1,30 @@
+name: database-transaction-isolation
+domain: database
+level: L1
+status: active
+description: Explore how PostgreSQL transaction isolation levels affect concurrent reads and writes.
+skills:
+  - transaction
+  - isolation-level
+  - concurrency
+roadmap:
+  importance: 5
+  targetLevel: L3
+runtime:
+  type: docker-compose
+  file: docker-compose.yml
+commands:
+  up: docker compose up -d && npx tsx experiments/wait-for-db.ts && npx tsx experiments/reset-data.ts
+  observe: npx tsx experiments/observe-state.ts
+experiments:
+  non-repeatable-read:
+    command: npx tsx experiments/non-repeatable-read.ts
+    description: Show that READ COMMITTED can observe a committed update between two reads in the same transaction.
+  repeatable-read:
+    command: npx tsx experiments/repeatable-read.ts
+    description: Show that REPEATABLE READ keeps a stable transaction snapshot.
+  serializable-retry:
+    command: npx tsx experiments/serializable-retry.ts
+    description: Show that SERIALIZABLE can abort a conflicting transaction and requires retrying the whole transaction.
+cleanup:
+  destructive: true

@@ -1,0 +1,35 @@
+name: database-concurrent-inventory
+domain: database
+level: L2
+status: active
+description: Compare inventory decrement strategies under concurrent purchase attempts.
+skills:
+  - transaction
+  - concurrency
+  - locking
+  - optimistic-lock
+  - pessimistic-lock
+roadmap:
+  importance: 5
+  targetLevel: L3
+runtime:
+  type: docker-compose
+  file: docker-compose.yml
+commands:
+  up: docker compose up -d && npx tsx experiments/wait-for-db.ts && npx tsx experiments/reset-data.ts
+  observe: npx tsx experiments/observe-state.ts
+experiments:
+  naive-update:
+    command: npx tsx experiments/naive-update.ts
+    description: Show lost update behavior when concurrent buyers read stock and write back an absolute value.
+  atomic-update:
+    command: npx tsx experiments/atomic-update.ts
+    description: Use a single conditional UPDATE to decrement stock without overselling.
+  optimistic-lock:
+    command: npx tsx experiments/optimistic-lock.ts
+    description: Use version checks and whole-operation retry to handle concurrent inventory updates.
+  pessimistic-lock:
+    command: npx tsx experiments/pessimistic-lock.ts
+    description: Use SELECT FOR UPDATE to serialize concurrent inventory updates.
+cleanup:
+  destructive: true

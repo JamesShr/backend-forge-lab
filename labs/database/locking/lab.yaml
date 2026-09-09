@@ -1,0 +1,31 @@
+name: database-locking
+domain: database
+level: L2
+status: active
+description: Compare PostgreSQL row lock waiting, fail-fast NOWAIT, and queue-style SKIP LOCKED behavior.
+skills:
+  - transaction
+  - row-lock
+  - lock-wait
+  - select-for-update
+roadmap:
+  importance: 5
+  targetLevel: L3
+runtime:
+  type: docker-compose
+  file: docker-compose.yml
+commands:
+  up: docker compose up -d && npx tsx experiments/wait-for-db.ts && npx tsx experiments/reset-data.ts
+  observe: npx tsx experiments/observe-state.ts
+experiments:
+  row-lock-wait:
+    command: npx tsx experiments/row-lock-wait.ts
+    description: Show that SELECT FOR UPDATE waits when another transaction already holds the row lock.
+  nowait:
+    command: npx tsx experiments/nowait.ts
+    description: Show that SELECT FOR UPDATE NOWAIT fails fast with SQLSTATE 55P03 instead of waiting.
+  skip-locked:
+    command: npx tsx experiments/skip-locked.ts
+    description: Show that SELECT FOR UPDATE SKIP LOCKED skips locked rows and lets another worker claim available work.
+cleanup:
+  destructive: true

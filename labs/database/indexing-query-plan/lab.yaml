@@ -1,0 +1,35 @@
+name: database-indexing-query-plan
+domain: database
+level: L2
+status: active
+description: Use EXPLAIN ANALYZE to observe when PostgreSQL chooses sequential scan vs. index scan, and how column selectivity drives query plan decisions.
+skills:
+  - index
+  - query-plan
+  - explain-analyze
+  - selectivity
+  - covering-index
+roadmap:
+  importance: 4
+  targetLevel: L2
+runtime:
+  type: docker-compose
+  file: docker-compose.yml
+commands:
+  up: docker compose up -d && npx tsx experiments/wait-for-db.ts && npx tsx experiments/reset-data.ts
+  observe: npx tsx experiments/observe-state.ts
+experiments:
+  seq-scan:
+    command: npx tsx experiments/seq-scan.ts
+    description: Query without index on a 100k-row table. Observe sequential scan cost via EXPLAIN ANALYZE.
+  index-scan:
+    command: npx tsx experiments/index-scan.ts
+    description: Btree index on high-cardinality user_id. Observe index scan and cost reduction vs. forced seq scan.
+  low-selectivity:
+    command: npx tsx experiments/low-selectivity.ts
+    description: Index on low-cardinality status column. Observe planner ignoring index for high-proportion queries and using it for rare values.
+  covering-index:
+    command: npx tsx experiments/covering-index.ts
+    description: Covering index on (user_id) INCLUDE (status, amount). Observe Index Only Scan with zero heap fetches.
+cleanup:
+  destructive: true

@@ -1,0 +1,35 @@
+name: database-connection-pool
+domain: database
+level: L3
+status: active
+description: Simulate connection pool exhaustion, timeout, and backpressure. Observe pool behaviour under load and compare pool sizing strategies.
+skills:
+  - connection-pool
+  - backpressure
+  - timeout
+  - pool-sizing
+  - pg-stat-activity
+roadmap:
+  importance: 4
+  targetLevel: L3
+runtime:
+  type: docker-compose
+  file: docker-compose.yml
+commands:
+  up: docker compose up -d && npx tsx experiments/wait-for-db.ts && npx tsx experiments/reset-data.ts
+  observe: npx tsx experiments/observe-state.ts
+experiments:
+  pool-exhaustion:
+    command: npx tsx experiments/pool-exhaustion.ts
+    description: Pool size 3, 20 concurrent workers each holding a connection for 500ms. Observe exhaustion and timeout behaviour.
+  timeout-behavior:
+    command: npx tsx experiments/timeout-behavior.ts
+    description: Compare connectionTimeoutMillis=1000 (fast-fail) vs 0 (infinite wait) under the same load.
+  backpressure:
+    command: npx tsx experiments/backpressure.ts
+    description: Pool size 5, 100 concurrent requests. Compare unbounded queue vs application-layer semaphore.
+  pool-sizing:
+    command: npx tsx experiments/pool-sizing.ts
+    description: Fixed workload of 50 concurrent requests. Benchmark pool sizes 2/5/10/20 and observe throughput vs latency trade-off.
+cleanup:
+  destructive: true

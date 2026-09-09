@@ -1,0 +1,17 @@
+node_modules/
+dist/
+coverage/
+runs/
+labs/**/runs/
+reports/
+labs/**/reports/
+
+.env
+.env.*
+!.env.example
+
+*.log
+npm-debug.log*
+
+.DS_Store
+Thumbs.db

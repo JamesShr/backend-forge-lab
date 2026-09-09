@@ -1,0 +1,28 @@
+name: database-deadlock
+domain: database
+level: L2
+status: active
+description: Reproduce PostgreSQL transaction deadlocks and retry the aborted transaction safely.
+skills:
+  - transaction
+  - locking
+  - deadlock
+  - retry
+roadmap:
+  importance: 5
+  targetLevel: L3
+runtime:
+  type: docker-compose
+  file: docker-compose.yml
+commands:
+  up: docker compose up -d && npx tsx experiments/wait-for-db.ts && npx tsx experiments/reset-data.ts
+  observe: npx tsx experiments/observe-state.ts
+experiments:
+  deadlock:
+    command: npx tsx experiments/deadlock.ts
+    description: Reproduce a deadlock by updating two rows in opposite order from two transactions.
+  deadlock-retry:
+    command: npx tsx experiments/deadlock-retry.ts
+    description: Retry the whole transaction after PostgreSQL aborts one participant with SQLSTATE 40P01.
+cleanup:
+  destructive: true

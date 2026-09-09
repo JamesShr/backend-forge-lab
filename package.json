@@ -1,0 +1,36 @@
+{
+  "name": "backend-forge-lab",
+  "version": "1.0.0",
+  "description": "Scenario-driven backend engineering lab for production-like backend behavior experiments.",
+  "main": "index.js",
+  "scripts": {
+    "lab:list": "tsx tools/lab-cli/commands/list.ts",
+    "lab:info": "tsx tools/lab-cli/commands/info.ts",
+    "lab:prepare": "tsx tools/lab-cli/commands/prepare.ts",
+    "lab:up": "tsx tools/lab-cli/commands/up.ts",
+    "lab:down": "tsx tools/lab-cli/commands/down.ts",
+    "lab:reset": "tsx tools/lab-cli/commands/reset.ts",
+    "lab:status": "tsx tools/lab-cli/commands/status.ts",
+    "lab:logs": "tsx tools/lab-cli/commands/logs.ts",
+    "lab:observe": "tsx tools/lab-cli/commands/observe.ts",
+    "lab:destroy": "tsx tools/lab-cli/commands/destroy.ts",
+    "lab:run": "tsx tools/lab-cli/commands/run.ts",
+    "lab:report": "tsx tools/lab-cli/commands/report.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run typecheck"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^26.5.0",
+    "@types/pg": "^8.23.1",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "pg": "^8.23.0",
+    "yaml": "^2.9.0"
+  }
+}
