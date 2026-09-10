@@ -10,17 +10,17 @@ Database labs 用來把 SQL / ORM 使用經驗推進到 production database engi
 | `database/concurrent-inventory` | L2 -> L3 | lost update、atomic update、optimistic lock、pessimistic lock |
 | `database/deadlock` | L2 -> L3 | deadlock detection、`SQLSTATE 40P01`、whole-transaction retry |
 | `database/locking` | L2 -> L3 | row lock wait、`SELECT FOR UPDATE`、`NOWAIT`、`SKIP LOCKED` |
+| `database/indexing-query-plan` | L2 | `EXPLAIN ANALYZE`、sequential scan、index scan、selectivity、covering index |
+| `database/connection-pool` | L3 | pool exhaustion、timeout behavior、backpressure、pool sizing trade-off |
 
 ## 預計情境實驗
 
 | 優先級 | Lab | 目標 |
 |---:|---|---|
-| 1 | `database/indexing-query-plan` | 使用 `EXPLAIN` / `EXPLAIN ANALYZE` 觀察 index、selectivity、query plan |
-| 2 | `database/connection-pool` | 模擬 pool exhaustion、timeout、backpressure |
-| 3 | `database/migration-zero-downtime` | additive migration、backfill、expand-contract |
-| 4 | `database/backup-restore` | backup、restore、PITR 概念演練 |
-| 5 | `database/partitioning` | range/list partition、query pruning、維運 trade-off |
-| 6 | `database/read-replica-lag` | read scaling、replication lag、read-after-write consistency |
+| 1 | `database/migration-zero-downtime` | additive migration、backfill、expand-contract |
+| 2 | `database/backup-restore` | backup、restore、PITR 概念演練 |
+| 3 | `database/partitioning` | range/list partition、query pruning、維運 trade-off |
+| 4 | `database/read-replica-lag` | read scaling、replication lag、read-after-write consistency |
 
 ## 工具 / 操作練習
 
