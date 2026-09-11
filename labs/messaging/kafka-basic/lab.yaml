@@ -1,0 +1,34 @@
+name: messaging-kafka-basic
+domain: messaging
+level: L2
+status: active
+description: Reproduce Kafka topic, partition, producer, consumer, consumer group, and offset baseline behavior.
+skills:
+  - kafka
+  - topic
+  - partition
+  - producer
+  - consumer-group
+  - offset
+roadmap:
+  importance: 5
+  targetLevel: L3
+runtime:
+  type: docker-compose
+  file: docker-compose.yml
+commands:
+  up: docker compose up -d && npx tsx experiments/wait-for-kafka.ts && npx tsx experiments/reset-data.ts
+  reset: npx tsx experiments/reset-data.ts
+  observe: npx tsx experiments/observe-state.ts
+experiments:
+  produce-consume:
+    command: npx tsx experiments/produce-consume.ts
+    description: Create a topic, produce order events, and consume them from the beginning.
+  partitioning:
+    command: npx tsx experiments/partitioning.ts
+    description: Produce keyed events and observe how Kafka places related keys into partitions.
+  consumer-offset:
+    command: npx tsx experiments/consumer-offset.ts
+    description: Compare consumer group offset progress with a new replay consumer group.
+cleanup:
+  destructive: true

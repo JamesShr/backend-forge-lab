@@ -14,6 +14,7 @@
 | `database/connection-pool` | L3 | `pool-exhaustion`, `timeout-behavior`, `backpressure`, `pool-sizing` | Active |
 | `distributed-systems/timeout-retry` | L2 -> L3 | `timeout`, `retry`, `exponential-backoff` | Active |
 | `distributed-systems/idempotency` | L2 -> L3 | `duplicate-request`, `idempotency-key`, `timeout-after-commit` | Active |
+| `messaging/kafka-basic` | L2 -> L3 | `produce-consume`, `partitioning`, `consumer-offset` | Active |
 
 ## Database Progress
 
@@ -44,11 +45,21 @@
 
 `distributed-systems/timeout-retry` 與 `distributed-systems/idempotency` 都使用 script-only runtime，不啟動外部 infrastructure。前者建立 retry policy 的可觀察行為，後者補上 retry 導致的 duplicate request 與 side effect consistency 問題。
 
+## Messaging Progress
+
+目前 Messaging 已建立第一個 L2 baseline：
+
+- Kafka topic 建立、describe 與 explicit provisioning
+- Producer append records 與 consumer from-beginning readback
+- Partition key 對 partition placement 與 ordering boundary 的影響
+- Consumer group committed offsets、同 group continue 與新 group replay
+
+`messaging/kafka-basic` 使用 Docker Compose 啟動單節點 Kafka KRaft runtime，並透過 Kafka container 內建 CLI 執行 experiments。它先建立 topic / partition / consumer group / offset 的操作面，後續適合接 `messaging/kafka-duplicate-message` 或 `messaging/kafka-consumer-lag` 深化 failure behavior。
+
 ## Coverage Gap
 
 目前尚未有 active lab coverage 的主要 domain：
 
-- Messaging
 - Observability
 - DevOps
 - Cloud
