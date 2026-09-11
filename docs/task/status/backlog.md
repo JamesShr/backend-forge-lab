@@ -9,6 +9,7 @@ Backlog 依 roadmap 的 breadth-first 原則維護：先補齊多個 domain 的 
 | `distributed-systems/timeout-retry` | Distributed Systems | 已建立 script-only L2 baseline，涵蓋 timeout、bounded retry、exponential backoff 與 retry amplification observation |
 | `distributed-systems/idempotency` | Distributed Systems | 已建立 script-only L2 baseline，涵蓋 duplicate request、idempotency key、request fingerprint 與 timeout-after-commit |
 | `messaging/kafka-basic` | Messaging | 已建立 Docker Compose L2 baseline，涵蓋 topic、partition、producer、consumer group 與 offset observation |
+| `observability/structured-logging` | Observability | 已建立 script-only L2 baseline，涵蓋 plain logs、structured JSON logs、request/correlation id 與 error correlation |
 
 ## Next
 
@@ -16,12 +17,11 @@ Backlog 依 roadmap 的 breadth-first 原則維護：先補齊多個 domain 的 
 
 | 順序 | Lab / Task | Domain | 目標 |
 |---:|---|---|---|
-| 1 | `observability/structured-logging` | Observability | 建立 contextual log 與 request correlation baseline |
-| 2 | `devops/docker-image-layers` | DevOps | 觀察 image layer、cache、build context |
-| 3 | `cloud/aws-service-map` | Cloud | 建立 AWS backend core service positioning 與 cost/cleanup baseline，不建立 billable resources |
-| 4 | `kubernetes/readiness-liveness` | Kubernetes | 建立 deployment、service、probe failure baseline |
-| 5 | `security/rbac` | Security | 建立 role / permission / authorization decision baseline |
-| 6 | `ai/structured-output` | AI | 建立 schema-constrained LLM output 與 validation baseline |
+| 1 | `devops/docker-image-layers` | DevOps | 觀察 image layer、cache、build context |
+| 2 | `cloud/aws-service-map` | Cloud | 建立 AWS backend core service positioning 與 cost/cleanup baseline，不建立 billable resources |
+| 3 | `kubernetes/readiness-liveness` | Kubernetes | 建立 deployment、service、probe failure baseline |
+| 4 | `security/rbac` | Security | 建立 role / permission / authorization decision baseline |
+| 5 | `ai/structured-output` | AI | 建立 schema-constrained LLM output 與 validation baseline |
 
 ## Planned
 

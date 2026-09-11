@@ -1,6 +1,6 @@
 # Active Labs
 
-目前 active labs 以 Database 為主，並已開始補 Distributed Systems L2 baseline。這不表示 roadmap 要先把 Database 全部做到 L3 才能進下一個 domain；後續 task 應繼續補 Messaging、Observability 等 L2 baseline。
+目前 active labs 以 Database 為主，並已開始補 Distributed Systems、Messaging 與 Observability L2 baseline。這不表示 roadmap 要先把 Database 全部做到 L3 才能進下一個 domain；後續 task 應繼續補 DevOps、Cloud、Kubernetes、Security、AI 等 L2 baseline。
 
 ## 目前 Active Labs
 
@@ -15,6 +15,7 @@
 | `distributed-systems/timeout-retry` | L2 -> L3 | `timeout`, `retry`, `exponential-backoff` | Active |
 | `distributed-systems/idempotency` | L2 -> L3 | `duplicate-request`, `idempotency-key`, `timeout-after-commit` | Active |
 | `messaging/kafka-basic` | L2 -> L3 | `produce-consume`, `partitioning`, `consumer-offset` | Active |
+| `observability/structured-logging` | L2 -> L3 | `plain-logs`, `structured-logs`, `error-correlation` | Active |
 
 ## Database Progress
 
@@ -56,11 +57,21 @@
 
 `messaging/kafka-basic` 使用 Docker Compose 啟動單節點 Kafka KRaft runtime，並透過 Kafka container 內建 CLI 執行 experiments。它先建立 topic / partition / consumer group / offset 的操作面，後續適合接 `messaging/kafka-duplicate-message` 或 `messaging/kafka-consumer-lag` 深化 failure behavior。
 
+## Observability Progress
+
+目前 Observability 已建立第一個 L2 baseline：
+
+- Plain text logs 在多 request 交錯時不易查詢
+- Structured JSON logs 帶 `requestId`、`correlationId`、`layer`、`event` 與 `outcome`
+- 同一個 request 可跨 API handler、service、repository 與 downstream layer 重建 timeline
+- Downstream error、service failure 與 API failure 可用同一個 correlation id 串起來
+
+`observability/structured-logging` 使用 script-only runtime，不啟動外部 log backend 或 OpenTelemetry Collector。它先建立 contextual logging 與 request correlation 的操作面，後續適合接 `observability/otel-request-tracing` 或 request metrics 深化 production observability baseline。
+
 ## Coverage Gap
 
 目前尚未有 active lab coverage 的主要 domain：
 
-- Observability
 - DevOps
 - Cloud
 - Kubernetes

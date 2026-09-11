@@ -1,0 +1,35 @@
+name: observability-structured-logging
+domain: observability
+level: L2
+status: active
+description: Compare plain text logs with structured contextual logs for correlating backend request events across layers.
+skills:
+  - structured-logging
+  - correlation-id
+  - request-id
+  - log-query
+  - error-diagnosis
+roadmap:
+  importance: 5
+  targetLevel: L3
+runtime:
+  type: script
+commands:
+  prepare: npx tsx experiments/lifecycle.ts prepare
+  up: npx tsx experiments/lifecycle.ts up
+  observe: npx tsx experiments/observe-state.ts
+  status: npx tsx experiments/lifecycle.ts status
+  down: npx tsx experiments/lifecycle.ts down
+  destroy: npx tsx experiments/lifecycle.ts destroy
+experiments:
+  plain-logs:
+    command: npx tsx experiments/plain-logs.ts
+    description: Show why interleaved plain text logs are hard to query when a request crosses API, service, repository, and downstream layers.
+  structured-logs:
+    command: npx tsx experiments/structured-logs.ts
+    description: Emit JSON logs with requestId, correlationId, layer, event, and outcome fields, then query one request timeline.
+  error-correlation:
+    command: npx tsx experiments/error-correlation.ts
+    description: Follow one failing request from downstream error to service failure and API response using shared correlation fields.
+cleanup:
+  destructive: false
