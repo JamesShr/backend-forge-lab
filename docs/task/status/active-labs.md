@@ -1,6 +1,6 @@
 # Active Labs
 
-目前 active labs 集中在 Database，代表第一批 runner 與 PostgreSQL lab baseline 已建立完成。這不表示 roadmap 要先把 Database 全部做到 L3 才能進下一個 domain；後續 task 應開始補 Distributed Systems、Messaging、Observability 等 L2 baseline。
+目前 active labs 以 Database 為主，並已開始補 Distributed Systems L2 baseline。這不表示 roadmap 要先把 Database 全部做到 L3 才能進下一個 domain；後續 task 應繼續補 Messaging、Observability 等 L2 baseline。
 
 ## 目前 Active Labs
 
@@ -12,6 +12,8 @@
 | `database/locking` | L2 -> L3 | `row-lock-wait`, `nowait`, `skip-locked` | Active |
 | `database/indexing-query-plan` | L2 | `seq-scan`, `index-scan`, `low-selectivity`, `covering-index` | Active |
 | `database/connection-pool` | L3 | `pool-exhaustion`, `timeout-behavior`, `backpressure`, `pool-sizing` | Active |
+| `distributed-systems/timeout-retry` | L2 -> L3 | `timeout`, `retry`, `exponential-backoff` | Active |
+| `distributed-systems/idempotency` | L2 -> L3 | `duplicate-request`, `idempotency-key`, `timeout-after-commit` | Active |
 
 ## Database Progress
 
@@ -30,11 +32,22 @@
 
 目前已實作的 database labs 已可由 runner 掃描，並已能產生 `runs/` 與 `reports/` evidence。後續 database labs 若繼續深化，應往可觀察性、production notes 與操作問題推進，而不只是新增 SQL 範例。但在 roadmap 節奏上，應同時開始補齊其他 domain 的 L1/L2 lab coverage。
 
+## Distributed Systems Progress
+
+目前 Distributed Systems 已建立第一個 L2 baseline：
+
+- Timeout budget 對 caller-visible latency 與 downstream work 的影響
+- Bounded retry 對 transient failure 成功率、attempt count 與 total latency 的影響
+- Immediate retry 與 exponential backoff + jitter 的 retry burst / recovery window trade-off
+- Duplicate request 在沒有 idempotency boundary 時會重複 business side effect
+- Idempotency key + request fingerprint 對 duplicate retry、key conflict 與 timeout-after-commit 的保護
+
+`distributed-systems/timeout-retry` 與 `distributed-systems/idempotency` 都使用 script-only runtime，不啟動外部 infrastructure。前者建立 retry policy 的可觀察行為，後者補上 retry 導致的 duplicate request 與 side effect consistency 問題。
+
 ## Coverage Gap
 
 目前尚未有 active lab coverage 的主要 domain：
 
-- Distributed Systems
 - Messaging
 - Observability
 - DevOps

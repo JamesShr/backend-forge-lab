@@ -2,17 +2,22 @@
 
 Distributed Systems labs 用來練習多 process / service / node 後才會出現的問題：partial failure、timeout、retry、idempotency、eventual consistency、distributed transaction 與 backpressure。
 
+## 目前已實作
+
+| Lab | Level | 重點 |
+|---|---:|---|
+| `distributed-systems/timeout-retry` | L2 -> L3 | timeout、bounded retry、exponential backoff、retry amplification |
+| `distributed-systems/idempotency` | L2 -> L3 | duplicate request、idempotency key、request fingerprint、timeout-after-commit |
+
 ## 預計情境實驗
 
 | 優先級 | Lab | 目標 |
 |---:|---|---|
-| 1 | `distributed-systems/timeout-retry` | timeout、retry、exponential backoff、retry storm |
-| 2 | `distributed-systems/idempotency` | duplicate request 下避免重複 business operation |
-| 3 | `distributed-systems/transactional-outbox` | DB transaction 與 message publishing consistency |
-| 4 | `distributed-systems/circuit-breaker` | dependency failure 下避免 cascading failure |
-| 5 | `distributed-systems/backpressure` | producer/consumer throughput mismatch 與降載 |
-| 6 | `distributed-systems/distributed-lock` | Redis lock 適用場景、lease、fencing token 限制 |
-| 7 | `distributed-systems/saga` | distributed transaction compensation 與 failure recovery |
+| 1 | `distributed-systems/transactional-outbox` | DB transaction 與 message publishing consistency |
+| 2 | `distributed-systems/circuit-breaker` | dependency failure 下避免 cascading failure |
+| 3 | `distributed-systems/backpressure` | producer/consumer throughput mismatch 與降載 |
+| 4 | `distributed-systems/distributed-lock` | Redis lock 適用場景、lease、fencing token 限制 |
+| 5 | `distributed-systems/saga` | distributed transaction compensation 與 failure recovery |
 
 ## 工具 / 框架操作練習
 

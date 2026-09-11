@@ -11,7 +11,7 @@ Task 排序應對齊 roadmap 的 breadth-first 原則：先補齊多個 domain �
 | 文件 | 說明 |
 |---|---|
 | `status/lab-framework-status.md` | Lab Framework 已完成能力 |
-| `status/active-labs.md` | 目前 active labs 與 database progress |
+| `status/active-labs.md` | 目前 active labs 與 domain progress |
 | `status/backlog.md` | Next / Planned / Later backlog |
 | `status/console-ui-evaluation.md` | Console UI / TUI 評估 |
 

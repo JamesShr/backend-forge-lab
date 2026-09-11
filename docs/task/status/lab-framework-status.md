@@ -24,6 +24,7 @@
 - Done: `lab:report`
 - Done: Better CLI formatting
 - Done: Runtime adapter abstraction
+- Done: Script-only lab support through manifest lifecycle command overrides
 - Done: Shared PostgreSQL runtime helper extraction
 
 ## Runner 支援範圍
@@ -78,3 +79,5 @@ labs/<domain>/<scenario>/reports/lab-report.html
 | `destroy` | `docker compose -f <file> down -v` |
 
 Manifest command 仍是 override，適合放 scenario-specific 的 seed、wait、observe 或特殊 lifecycle。
+
+Script-only labs 目前沒有 runtime adapter defaults；它們透過 manifest `commands` 明確定義 `prepare`、`up`、`observe`、`status`、`down` 與 `destroy`。這適合不需要外部 infrastructure 的 L1/L2 lab，例如 timeout / retry policy simulation。

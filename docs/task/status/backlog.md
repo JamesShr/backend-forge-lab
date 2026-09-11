@@ -2,21 +2,26 @@
 
 Backlog 依 roadmap 的 breadth-first 原則維護：先補齊多個 domain 的 L1/L2 接觸面，再挑核心主題進 L3/L4。避免長時間只在單一 domain 裡追加 labs。
 
+## Recently Completed
+
+| Lab / Task | Domain | 結果 |
+|---|---|---|
+| `distributed-systems/timeout-retry` | Distributed Systems | 已建立 script-only L2 baseline，涵蓋 timeout、bounded retry、exponential backoff 與 retry amplification observation |
+| `distributed-systems/idempotency` | Distributed Systems | 已建立 script-only L2 baseline，涵蓋 duplicate request、idempotency key、request fingerprint 與 timeout-after-commit |
+
 ## Next
 
 下一批優先補 L2 baseline coverage。
 
 | 順序 | Lab / Task | Domain | 目標 |
 |---:|---|---|---|
-| 1 | `distributed-systems/timeout-retry` | Distributed Systems | 建立 timeout、retry、exponential backoff 的最小可執行情境 |
-| 2 | `distributed-systems/idempotency` | Distributed Systems | duplicate request 下避免重複 business operation |
-| 3 | `messaging/kafka-basic` | Messaging | 建立 topic、partition、producer、consumer 的 L2 baseline |
-| 4 | `observability/structured-logging` | Observability | 建立 contextual log 與 request correlation baseline |
-| 5 | `devops/docker-image-layers` | DevOps | 觀察 image layer、cache、build context |
-| 6 | `cloud/aws-service-map` | Cloud | 建立 AWS backend core service positioning 與 cost/cleanup baseline，不建立 billable resources |
-| 7 | `kubernetes/readiness-liveness` | Kubernetes | 建立 deployment、service、probe failure baseline |
-| 8 | `security/rbac` | Security | 建立 role / permission / authorization decision baseline |
-| 9 | `ai/structured-output` | AI | 建立 schema-constrained LLM output 與 validation baseline |
+| 1 | `messaging/kafka-basic` | Messaging | 建立 topic、partition、producer、consumer 的 L2 baseline |
+| 2 | `observability/structured-logging` | Observability | 建立 contextual log 與 request correlation baseline |
+| 3 | `devops/docker-image-layers` | DevOps | 觀察 image layer、cache、build context |
+| 4 | `cloud/aws-service-map` | Cloud | 建立 AWS backend core service positioning 與 cost/cleanup baseline，不建立 billable resources |
+| 5 | `kubernetes/readiness-liveness` | Kubernetes | 建立 deployment、service、probe failure baseline |
+| 6 | `security/rbac` | Security | 建立 role / permission / authorization decision baseline |
+| 7 | `ai/structured-output` | AI | 建立 schema-constrained LLM output 與 validation baseline |
 
 ## Planned
 
